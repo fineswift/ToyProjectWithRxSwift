@@ -78,6 +78,7 @@ class DetailView: UIView, UIBasePreView {
     }
 
     // MARK: - model Dependency Injection
+    /// 데이터 바인딩
     func setupDI<T>(observable: Observable<T>) {
         if let cityInfo = observable as? Observable<CityInfo> {
             cityInfo

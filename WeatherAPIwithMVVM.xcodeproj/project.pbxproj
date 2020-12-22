@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		40C9F808B2336CFAF498F30A /* Pods_WeatherAPIwithMVVM.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F396EA1101F29900C57EBE0E /* Pods_WeatherAPIwithMVVM.framework */; };
 		68545EE82514904B0050D99B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68545EE72514904B0050D99B /* AppDelegate.swift */; };
-		68545EEA2514904B0050D99B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68545EE92514904B0050D99B /* SceneDelegate.swift */; };
 		68545EEC2514904B0050D99B /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68545EEB2514904B0050D99B /* MainViewController.swift */; };
 		68545EF12514904D0050D99B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 68545EF02514904D0050D99B /* Assets.xcassets */; };
 		68545EF42514904D0050D99B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 68545EF22514904D0050D99B /* LaunchScreen.storyboard */; };
@@ -31,6 +30,10 @@
 		68A6A316251DCBAE004B7E59 /* AlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A6A315251DCBAE004B7E59 /* AlertManager.swift */; };
 		68A6A31A25216443004B7E59 /* ToastMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A6A31925216443004B7E59 /* ToastMessage.swift */; };
 		68B22C4F252B189700FA5571 /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B22C4E252B189700FA5571 /* Resource.swift */; };
+		68C6ADAE25909E2B001479BF /* AppStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C6ADAD25909E2B001479BF /* AppStep.swift */; };
+		68C6ADC02590A072001479BF /* AppStepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C6ADBF2590A072001479BF /* AppStepper.swift */; };
+		68C6ADC82590A556001479BF /* InitFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C6ADC72590A556001479BF /* InitFlow.swift */; };
+		68C6ADCB2590A861001479BF /* FlowSugar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C6ADCA2590A861001479BF /* FlowSugar.swift */; };
 		68CD743D251B2B16001F6185 /* UIApplication+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68CD743C251B2B16001F6185 /* UIApplication+.swift */; };
 		68E41C4E2521BF300039FE61 /* Indicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68E41C4D2521BF300039FE61 /* Indicator.swift */; };
 /* End PBXBuildFile section */
@@ -40,7 +43,6 @@
 		61C7F431DFA223C188FF60F6 /* Pods-WeatherAPIwithMVVM.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherAPIwithMVVM.release.xcconfig"; path = "Target Support Files/Pods-WeatherAPIwithMVVM/Pods-WeatherAPIwithMVVM.release.xcconfig"; sourceTree = "<group>"; };
 		68545EE42514904B0050D99B /* WeatherAPIwithMVVM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherAPIwithMVVM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		68545EE72514904B0050D99B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		68545EE92514904B0050D99B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		68545EEB2514904B0050D99B /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		68545EF02514904D0050D99B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		68545EF32514904D0050D99B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -64,6 +66,10 @@
 		68A6A315251DCBAE004B7E59 /* AlertManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertManager.swift; sourceTree = "<group>"; };
 		68A6A31925216443004B7E59 /* ToastMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastMessage.swift; sourceTree = "<group>"; };
 		68B22C4E252B189700FA5571 /* Resource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resource.swift; sourceTree = "<group>"; };
+		68C6ADAD25909E2B001479BF /* AppStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStep.swift; sourceTree = "<group>"; };
+		68C6ADBF2590A072001479BF /* AppStepper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStepper.swift; sourceTree = "<group>"; };
+		68C6ADC72590A556001479BF /* InitFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitFlow.swift; sourceTree = "<group>"; };
+		68C6ADCA2590A861001479BF /* FlowSugar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowSugar.swift; sourceTree = "<group>"; };
 		68CD743C251B2B16001F6185 /* UIApplication+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+.swift"; sourceTree = "<group>"; };
 		68E41C4D2521BF300039FE61 /* Indicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Indicator.swift; sourceTree = "<group>"; };
 		F396EA1101F29900C57EBE0E /* Pods_WeatherAPIwithMVVM.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeatherAPIwithMVVM.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -131,7 +137,7 @@
 			isa = PBXGroup;
 			children = (
 				68545EE72514904B0050D99B /* AppDelegate.swift */,
-				68545EE92514904B0050D99B /* SceneDelegate.swift */,
+				68C6ADA925909DE1001479BF /* Coordinator */,
 				68545F0A251498060050D99B /* Model */,
 				68545F09251497DE0050D99B /* Extension */,
 				68545EFD251497410050D99B /* Main */,
@@ -184,6 +190,7 @@
 				68545F612514A31C0050D99B /* ViewModelType.swift */,
 				686493A32518391C007D876A /* UIKitPreView+.swift */,
 				68CD743C251B2B16001F6185 /* UIApplication+.swift */,
+				68C6ADCA2590A861001479BF /* FlowSugar.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -196,6 +203,40 @@
 				68B22C4E252B189700FA5571 /* Resource.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		68C6ADA925909DE1001479BF /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				68C6ADAA25909DF4001479BF /* Step */,
+				68C6ADAB25909DFD001479BF /* Stepper */,
+				68C6ADAC25909E04001479BF /* Flow */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		68C6ADAA25909DF4001479BF /* Step */ = {
+			isa = PBXGroup;
+			children = (
+				68C6ADAD25909E2B001479BF /* AppStep.swift */,
+			);
+			path = Step;
+			sourceTree = "<group>";
+		};
+		68C6ADAB25909DFD001479BF /* Stepper */ = {
+			isa = PBXGroup;
+			children = (
+				68C6ADBF2590A072001479BF /* AppStepper.swift */,
+			);
+			path = Stepper;
+			sourceTree = "<group>";
+		};
+		68C6ADAC25909E04001479BF /* Flow */ = {
+			isa = PBXGroup;
+			children = (
+				68C6ADC72590A556001479BF /* InitFlow.swift */,
+			);
+			path = Flow;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -318,16 +359,19 @@
 				68545EEC2514904B0050D99B /* MainViewController.swift in Sources */,
 				68545F11251498580050D99B /* MainView.swift in Sources */,
 				68545F01251497A30050D99B /* SearchViewController.swift in Sources */,
+				68C6ADAE25909E2B001479BF /* AppStep.swift in Sources */,
 				68545F652514A36C0050D99B /* ViewModel.swift in Sources */,
 				686493A42518391C007D876A /* UIKitPreView+.swift in Sources */,
 				68B22C4F252B189700FA5571 /* Resource.swift in Sources */,
 				68545F06251497C70050D99B /* DetailViewController.swift in Sources */,
 				68545EE82514904B0050D99B /* AppDelegate.swift in Sources */,
+				68C6ADC82590A556001479BF /* InitFlow.swift in Sources */,
 				68A6A31A25216443004B7E59 /* ToastMessage.swift in Sources */,
-				68545EEA2514904B0050D99B /* SceneDelegate.swift in Sources */,
+				68C6ADC02590A072001479BF /* AppStepper.swift in Sources */,
 				68545F17251498820050D99B /* SearchViewModel.swift in Sources */,
 				68E41C4E2521BF300039FE61 /* Indicator.swift in Sources */,
 				68545F14251498670050D99B /* MainCell.swift in Sources */,
+				68C6ADCB2590A861001479BF /* FlowSugar.swift in Sources */,
 				68545F23251498E30050D99B /* UIView+.swift in Sources */,
 				68CD743D251B2B16001F6185 /* UIApplication+.swift in Sources */,
 				68545F622514A31C0050D99B /* ViewModelType.swift in Sources */,

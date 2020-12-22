@@ -38,8 +38,6 @@ class MainViewController: UIViewController, ViewModelProtocol {
         subView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
-
-        navigationItem.title = "Weather"
         navigationItem.rightBarButtonItem = subView.searchButton
     }
 
@@ -47,26 +45,10 @@ class MainViewController: UIViewController, ViewModelProtocol {
     func bindingViewModel() {
         let res = viewModel.transform(req: ViewModel.Input(action: actionRelay.asObservable()))
 
-        res.viewMove.bind(onNext: viewMoveProcess).disposed(by: disposeBag)
-
-        // output
-        subView.setupDI(observable: res.itemList)
-
-        // input
-        subView.setupDI(generic: actionRelay)
+        subView
+            .setupDI(observable: res.itemList)
+            .setupDI(generic: actionRelay)
     }
 
     // MARK: - Methods
-    func viewMoveProcess(viewType: ViewType) {
-        switch viewType {
-        case .detail(let city):
-            let nextVC = DetailViewController().then {
-                $0.viewModel = DetailViewModel(model: city)
-            }
-            UIApplication.shared.topViewController?.navigationController?.pushViewController(nextVC, animated: true)
-        case .search:
-            let nextVC = SearchViewController.instantiate(withViewModel: SearchViewModel(viewController: self))
-            UIApplication.shared.topViewController?.present(nextVC, animated: true)
-        }
-    }
 }

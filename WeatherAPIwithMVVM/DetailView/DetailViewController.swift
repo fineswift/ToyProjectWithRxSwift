@@ -29,15 +29,14 @@ class DetailViewController: UIViewController, ViewModelProtocol {
         subView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
-
-        navigationItem.title = "Detail"
     }
 
     // MARK: - Binding
     func bindingViewModel() {
         let res = viewModel.transform(req: ViewModel.Input())
 
-        subView.setupDI(observable: res.detailInfo)
+        subView
+            .setupDI(observable: res.detailInfo)
     }
 
     // MARK: - Methods

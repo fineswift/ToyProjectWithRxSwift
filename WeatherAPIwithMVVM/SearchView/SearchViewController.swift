@@ -44,11 +44,9 @@ class SearchViewController: UIViewController, ViewModelProtocol {
                                         dataRequestTrigger: requestTrigger.asObservable(),
                                         actionRelay: actionRelay))
         
-        // output
-        subView.setupDI(observable: res.cityList.asObservable())
-        
-        // input
-        subView.setupDI(generic: actionRelay)
+        subView
+            .setupDI(observable: res.cityList)
+            .setupDI(generic: actionRelay)
     }
     
     // MARK: - Methods

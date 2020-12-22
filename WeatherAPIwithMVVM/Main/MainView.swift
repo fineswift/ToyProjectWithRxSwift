@@ -42,7 +42,8 @@ class MainView: UIView, UIBasePreView {
     }
     
     // MARK: - model Dependency Injection
-    func setupDI<T>(observable: Observable<[T]>) {
+    /// 테이블뷰에 데이터 리스트 보여주기 위함
+    func setupDI<T>(observable: Observable<[T]>) -> Self {
         if let cityList = observable as? Observable<[CityInfo]> {
             cityList.bind(to: tableView.rx.items(cellIdentifier: "CustomCell", cellType: MainCell.self)) { row, element, cell in
                 cell.mapping(data: element)
@@ -50,10 +51,12 @@ class MainView: UIView, UIBasePreView {
         } else {
             print("Observable Type Error!!!(미구현): MainView")
         }
+        return self
     }
 
     /// 터치 액션
-    func setupDI<T>(generic: PublishRelay<T>) {
+    @discardableResult
+    func setupDI<T>(generic: PublishRelay<T>) -> Self {
         if let relay = generic as? PublishRelay<MainInput> {
             searchButton.rx.tap
                 .map { .search }
@@ -72,5 +75,6 @@ class MainView: UIView, UIBasePreView {
         } else {
             print("PublishRelay Type Error!!!(미구현): MainView")
         }
+        return self
     }
 }

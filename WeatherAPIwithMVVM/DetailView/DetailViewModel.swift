@@ -6,10 +6,15 @@
 //
 
 import Foundation
+import RxFlow
 
-class DetailViewModel: ViewModelType {
+class DetailViewModel: ViewModelType, Stepper {
+    // MARK: - Stepper
+    var steps = PublishRelay<Step>()
+    
+    // MARK: - Properties
     /// 이전 뷰에서 전달 받은 날씨 정보
-    let dataInfo: CityInfo
+    var dataInfo: CityInfo?
     
     init(model: CityInfo) {
         dataInfo = model
@@ -26,6 +31,6 @@ class DetailViewModel: ViewModelType {
     }
 
     func transform(req: ViewModel.Input) -> ViewModel.Output {
-        return Output(detailInfo: Observable.just(dataInfo))
+        return Output(detailInfo: Observable.just(dataInfo).compactMap { $0 })
     }
 }

@@ -46,7 +46,8 @@ class SearchView: UIView, UIBasePreView {
     }
 
     // MARK: - model Dependency Injection
-    func setupDI<T>(observable: Observable<T>) {
+    /// 서버에서 받아온 도시 정보
+    func setupDI<T>(observable: Observable<T>) -> Self {
         if let cityList = observable as? Observable<[List]> {
             cityList.bind(to: tableView.rx.items(cellIdentifier: "Cell")) { row, element, cell in
                 cell.textLabel?.text = element.name
@@ -54,10 +55,12 @@ class SearchView: UIView, UIBasePreView {
         } else {
             print("Observable Type Error!!!(미구현): SearchView")
         }
+        return self
     }
 
     /// 터치 액션
-    func setupDI<T>(generic: PublishRelay<T>) {
+    @discardableResult
+    func setupDI<T>(generic: PublishRelay<T>) -> Self {
         if let search = generic as? PublishRelay<SearchInput> {
             searchBar.rx.text
                 .orEmpty
@@ -81,6 +84,7 @@ class SearchView: UIView, UIBasePreView {
         } else {
             print("PublishRelay Type Error!!!(미구현): SearchView")
         }
+        return self
     }
 }
 

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import RxFlow
 
 enum MainInput {
     case refresh
@@ -14,22 +15,19 @@ enum MainInput {
     case cellDelete(CityInfo)
 }
 
-enum ViewType {
-    case detail(CityInfo)
-    case search
-}
-
-class MainViewModel: ViewModelType {
-
+class MainViewModel: ViewModelType, Stepper {
+    // MARK: - Stepper
+    var steps = PublishRelay<Step>()
+    
     let disposeBag = DisposeBag()
+    
+    // MARK: - Properties
     /// 서버에서 받아온 도시 리스트
     var listCellData: [CityInfo] = []
     /// 테이블 뷰에 보여줄 도시 리스트
     let cityRelay = PublishRelay<[CityInfo]>()
     /// 검색한 도시의 id
     let searchCity = PublishSubject<Int>()
-    /// 화면 전환 이벤트
-    let viewModelRelay = PublishRelay<ViewType>()
 
     // MARK: - ViewModelType Protocol
     typealias ViewModel = MainViewModel
@@ -40,7 +38,6 @@ class MainViewModel: ViewModelType {
 
     struct Output {
         let itemList: Observable<[CityInfo]>
-        let viewMove: Observable<ViewType>
     }
 
     func transform(req: ViewModel.Input) -> ViewModel.Output {
@@ -61,8 +58,7 @@ class MainViewModel: ViewModelType {
             }
         }).disposed(by: disposeBag)
 
-        return Output(itemList: cityRelay.asObservable(),
-                      viewMove: viewModelRelay.asObservable())
+        return Output(itemList: cityRelay.asObservable())
     }
     
     /// 터치 액션 이벤트
@@ -73,9 +69,9 @@ class MainViewModel: ViewModelType {
                 setUpData(data)
             }
         case .search:
-            self.viewModelRelay.accept(.search)
+            self.steps.accept(AppStep.search)
         case .cellSelect(let city):
-            viewModelRelay.accept(.detail(city))
+            self.steps.accept(AppStep.detail(data: city))
         case .cellDelete(let city):
             guard var data = UserDefaults.standard.value(forKey: "CityIdList") as? [Int] else { return }
             for i in 0..<data.count {

@@ -6,26 +6,25 @@
 //
 
 import Foundation
+import RxFlow
 
 enum SearchInput {
     case searchText(String)
     case modelSelect(List)
 }
 
-class SearchViewModel: ViewModelType {
+class SearchViewModel: ViewModelType, Stepper {
+    // MARK: - Stepper
+    var steps = PublishRelay<Step>()
+    
+    // MARK: - Properties
     /// 서버에서 받아온 50개의 도시 리스트
     var cityNames: [List] = []
     /// 테이블 뷰 셀에 보여줄 데이터 리스트
     let cityListRelay = PublishRelay<[List]>()
     let disposeBag = DisposeBag()
     
-    /// 이전 화면
-    weak var vc: MainViewController?
     
-    init (viewController: UIViewController) {
-        guard let view = viewController as? MainViewController else { return }
-        vc = view
-    }
     // MARK: - ViewModelType Protocol
     typealias ViewModel = SearchViewModel
     
@@ -35,7 +34,7 @@ class SearchViewModel: ViewModelType {
     }
     
     struct Output {
-        let cityList: PublishRelay<[List]>
+        let cityList: Observable<[List]>
     }
 
     func transform(req: ViewModel.Input) -> ViewModel.Output {
@@ -43,7 +42,7 @@ class SearchViewModel: ViewModelType {
         
         req.actionRelay.subscribe(onNext: action).disposed(by: disposeBag)
         
-        return Output(cityList: cityListRelay)
+        return Output(cityList: cityListRelay.asObservable())
     }
 }
 
@@ -81,7 +80,9 @@ extension SearchViewModel {
                                           okTitle: "추가",
                                           input: model.name,
                                           completion: { [weak self] in
-                                            self?.vc?.viewModel.searchCity.onNext(model.id)
+//                                            self?.vc?.viewModel.searchCity.onNext(model.id)
+                                            
+                                            
             })
         }
     }
