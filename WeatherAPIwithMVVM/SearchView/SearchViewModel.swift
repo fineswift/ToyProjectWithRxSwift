@@ -82,7 +82,6 @@ extension SearchViewModel {
                                           completion: { [weak self] in
 //                                            self?.vc?.viewModel.searchCity.onNext(model.id)
                                             
-                                            
             })
         }
     }
