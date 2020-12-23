@@ -10,6 +10,7 @@ import Foundation
 struct R {
     struct string {
         struct detail { }
+        struct Toast {}
     }
 }
 
@@ -24,4 +25,11 @@ extension R.string.detail {
     static let lat: (Double?) -> String = { "위    도: \($0.map { String($0) } ?? "nil")" }
     /// 경도
     static let lon: (Double?) -> String = { "경    도: \($0.map { String($0) } ?? "nil")" }
+}
+
+extension R.string.Toast {
+    /// 갯수 제한
+    static let numberLimit = "저장 가능한 갯수를 초과하였습니다!"
+    /// 중복된 도시
+    static let duplicateID = "검색한 도시가 이미 있습니다!"
 }
