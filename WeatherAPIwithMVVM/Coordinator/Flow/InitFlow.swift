@@ -28,6 +28,9 @@ class InitFlow: Flow {
             return navigateToSearch()
         case .detail(let data):
             return navigateToDetail(data)
+        case .dismiss(let completion):
+            self.rootViewController.presentedViewController?.dismiss(animated: true, completion: completion)
+            return .none
         }
     }
 }
@@ -55,9 +58,8 @@ extension InitFlow {
             .oneStepPushBy(self.rootViewController)
     }
     
-    
-    private func popView() -> FlowContributors {
-        rootViewController.popViewController(animated: true)
-        return .none
-    }
+//    private func popView() -> FlowContributors {
+//        rootViewController.popViewController(animated: true)
+//        return .none
+//    }
 }

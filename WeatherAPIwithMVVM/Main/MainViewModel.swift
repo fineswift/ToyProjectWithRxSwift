@@ -57,7 +57,7 @@ class MainViewModel: ViewModelType, Stepper {
                 self.setUpData(array)
             }
         }).disposed(by: disposeBag)
-
+        
         return Output(itemList: cityRelay.asObservable())
     }
     
