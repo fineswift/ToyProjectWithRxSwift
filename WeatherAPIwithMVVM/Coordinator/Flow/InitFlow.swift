@@ -48,6 +48,11 @@ extension InitFlow {
         FlowSugar(viewModel: SearchViewModel())
             .presentable(SearchViewController.self)
             .oneStepModalPresent(rootViewController, .automatic, true)
+        
+        // MARK: - FlowSugar 사용 X
+//        let VC = SearchViewController.instantiate(withViewModel: SearchViewModel())
+//        self.rootViewController.present(VC, animated: true)
+//        return .one(flowContributor: .contribute(withNextPresentable: VC, withNextStepper: VC.viewModel))
     }
     
     private func navigateToDetail(_ data: CityInfo) -> FlowContributors {
@@ -56,5 +61,11 @@ extension InitFlow {
                 $0.title = "Detail"
             })
             .oneStepPushBy(self.rootViewController)
+        
+        // MARK: - FlowSugar 사용 X
+//        let viewController = DetailViewController.instantiate(withViewModel: DetailViewModel(model: data))
+//        viewController.title = "Detail"
+//        self.rootViewController.pushViewController(viewController, animated: true)
+//        return .one(flowContributor: .contribute(withNextPresentable: viewController, withNextStepper: viewController.viewModel))
     }
 }
