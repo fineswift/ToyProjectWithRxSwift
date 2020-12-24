@@ -80,9 +80,26 @@ extension SearchViewModel {
                                           okTitle: "추가",
                                           input: model.name,
                                           completion: { [weak self] in
-//                                            self?.vc?.viewModel.searchCity.onNext(model.id)
-                                            
+                                            self?.saveCity(model.id)
             })
         }
+    }
+    
+    /// 선택한 도시 UserDefaults에 저장하기 위함
+    func saveCity(_ id: Int) {
+        if let idList = UserDefaults.standard.value(forKey: "CityIdList") as? [Int] {
+            if idList.count >= 20 {
+                ToastMessage.shared.showToast(R.string.Toast.numberLimit)
+            } else if idList.contains(id) {
+                ToastMessage.shared.showToast(R.string.Toast.duplicateID)
+            } else {
+                var data = idList
+                data.append(id)
+                UserDefaults.standard.set(data, forKey: "CityIdList")
+            }
+        } else {
+            UserDefaults.standard.set([id], forKey: "CityIdList")
+        }
+        NotificationCenter.default.post(name: Notification.Name("refresh"), object: nil)
     }
 }

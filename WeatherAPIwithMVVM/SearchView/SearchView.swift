@@ -53,7 +53,7 @@ class SearchView: UIView, UIBasePreView {
                 cell.textLabel?.text = element.name
             }.disposed(by: disposeBag)
         } else {
-            print("Observable Type Error!!!(미구현): SearchView")
+            NSLog("Observable Type Error!!!(미구현): SearchView")
         }
         return self
     }
@@ -82,7 +82,7 @@ class SearchView: UIView, UIBasePreView {
                     cell?.isSelected = false
                 }).disposed(by: disposeBag)
         } else {
-            print("PublishRelay Type Error!!!(미구현): SearchView")
+            NSLog("PublishRelay Type Error!!!(미구현): SearchView")
         }
         return self
     }

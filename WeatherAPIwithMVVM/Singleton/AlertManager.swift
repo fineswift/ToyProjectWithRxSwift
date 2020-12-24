@@ -17,8 +17,8 @@ final class AlertManager: NSObject {
         let alert = UIAlertController(title: alertTitle, message: "\(input ?? "")\(alertMessage)", preferredStyle: .alert)
         let cancelAction = UIAlertAction(title: cancelTitle, style: .destructive, handler: nil)
         let okAction = UIAlertAction(title: okTitle, style: .default, handler: { _ in
-//            UIApplication.shared.topViewController?.dismiss(animated: true, completion: completion)
             AppStepper.shared.steps.accept(AppStep.dismiss(completion: completion))
+            //
         })
 
         alert.addAction(cancelAction)

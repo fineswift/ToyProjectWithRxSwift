@@ -27,6 +27,7 @@ class MainView: UIView, UIBasePreView {
     // MARK: - Objects
     let tableView = UITableView().then {
         $0.register(MainCell.self, forCellReuseIdentifier: "CustomCell")
+        $0.rowHeight = 75
     }
     var searchButton = UIBarButtonItem()
     
@@ -36,8 +37,6 @@ class MainView: UIView, UIBasePreView {
         tableView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
-        
-        tableView.rowHeight = 74.5
         searchButton = UIBarButtonItem(barButtonSystemItem: .search, target: nil, action: nil)
     }
     

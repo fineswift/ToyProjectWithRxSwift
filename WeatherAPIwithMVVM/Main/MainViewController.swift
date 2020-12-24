@@ -20,6 +20,7 @@ class MainViewController: UIViewController, ViewModelProtocol {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        NotificationCenter.default.addObserver(self, selector: #selector(refreshTrigger(_:)), name: Notification.Name("refresh"), object: nil)
 
         setupLayout()
         bindingViewModel()
@@ -51,4 +52,9 @@ class MainViewController: UIViewController, ViewModelProtocol {
     }
 
     // MARK: - Methods
+    @objc func refreshTrigger(_ noti: Notification) {
+        if noti.name.rawValue == "refresh" {
+            actionRelay.accept(.refresh)
+        }
+    }
 }

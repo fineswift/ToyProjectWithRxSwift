@@ -57,9 +57,4 @@ extension InitFlow {
             })
             .oneStepPushBy(self.rootViewController)
     }
-    
-//    private func popView() -> FlowContributors {
-//        rootViewController.popViewController(animated: true)
-//        return .none
-//    }
 }

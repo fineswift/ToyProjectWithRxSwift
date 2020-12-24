@@ -69,11 +69,11 @@ class MainCell: UITableViewCell {
     */
     func mapping<T>(data: T) {
         if let cityInfo = data as? CityInfo {
-            self.nameLabel.text = cityInfo.name
-            self.temperaturesLabel.text = cityInfo.temperature
-            self.imgView.image = cityInfo.image
+            nameLabel.text = cityInfo.name
+            temperaturesLabel.text = cityInfo.temperature
+            imgView.image = cityInfo.image
         } else {
-            print("MainView mapping Error!!!(미구현)")
+            NSLog("MainView mapping Error!!!(미구현)")
         }
     }
 }

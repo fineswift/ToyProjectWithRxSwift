@@ -14,5 +14,6 @@ enum AppStep: Step {
     case search
     /// 상세보기 화면
     case detail(data: CityInfo)
+    /// dismiss
     case dismiss(completion: (() -> Void)?)
 }

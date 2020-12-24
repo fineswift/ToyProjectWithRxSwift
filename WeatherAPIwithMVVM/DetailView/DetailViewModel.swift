@@ -13,7 +13,6 @@ class DetailViewModel: ViewModelType, Stepper {
     var steps = PublishRelay<Step>()
     
     // MARK: - Properties
-    /// 이전 뷰에서 전달 받은 날씨 정보
     var dataInfo: CityInfo?
     
     init(model: CityInfo) {

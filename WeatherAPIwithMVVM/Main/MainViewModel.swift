@@ -26,8 +26,6 @@ class MainViewModel: ViewModelType, Stepper {
     var listCellData: [CityInfo] = []
     /// 테이블 뷰에 보여줄 도시 리스트
     let cityRelay = PublishRelay<[CityInfo]>()
-    /// 검색한 도시의 id
-    let searchCity = PublishSubject<Int>()
 
     // MARK: - ViewModelType Protocol
     typealias ViewModel = MainViewModel
@@ -42,21 +40,6 @@ class MainViewModel: ViewModelType, Stepper {
 
     func transform(req: ViewModel.Input) -> ViewModel.Output {
         req.action.bind(onNext: actionProcess).disposed(by: disposeBag)
-
-        searchCity.subscribe(onNext: { [weak self] id in
-            guard let `self` = self else { return }
-            if self.listCellData.count >= 20 {
-                ToastMessage.shared.showToast("저장 가능한 갯수를 초과하였습니다!")
-            } else if self.listCellData.contains(where: { data in data.id == id}) {
-                ToastMessage.shared.showToast("검색한 도시가 이미 있습니다!")
-            } else {
-                var array = [id]
-                if self.listCellData.count > 0 {
-                    self.listCellData.forEach { array.append($0.id!) }
-                }
-                self.setUpData(array)
-            }
-        }).disposed(by: disposeBag)
         
         return Output(itemList: cityRelay.asObservable())
     }

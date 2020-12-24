@@ -93,7 +93,7 @@ class DetailView: UIView, UIBasePreView {
                     self.imgView.image = model.image
                 }).disposed(by: disposeBag)
         } else {
-            print("Observable Type Error!!!(미구현): DetailView")
+            NSLog("Observable Type Error!!!(미구현): DetailView")
         }
     }
 }
