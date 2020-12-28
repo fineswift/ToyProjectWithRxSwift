@@ -18,7 +18,6 @@ final class AlertManager: NSObject {
         let cancelAction = UIAlertAction(title: cancelTitle, style: .destructive, handler: nil)
         let okAction = UIAlertAction(title: okTitle, style: .default, handler: { _ in
             AppStepper.shared.steps.accept(AppStep.dismiss(completion: completion))
-            //
         })
 
         alert.addAction(cancelAction)

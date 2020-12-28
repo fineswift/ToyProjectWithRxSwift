@@ -22,6 +22,10 @@ class DetailView: UIView, UIBasePreView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    // MARK: - Properties
+    let nextRelay = PublishRelay<Void>()
+    let beforeRelay = PublishRelay<Void>()
 
     // MARK: - Objects
     /// 날씨 상태 이미지
@@ -36,22 +40,23 @@ class DetailView: UIView, UIBasePreView {
     let latitudeLabel = UILabel()
     /// 경도
     let longitudeLabel = UILabel()
-    
-    lazy var leftButton = UIButton().then {
-        $0.setImage(UIImage(systemName: "chevron.left"), for: .normal)
-    }
-    
-    lazy var rightButton = UIButton().then {
+    /// 다음 버튼
+    lazy var nextButton = UIButton().then {
         $0.setImage(UIImage(systemName: "chevron.right"), for: .normal)
+        $0.rx.tap.bind(to: nextRelay).disposed(by: disposeBag)
+    }
+    /// 이전 버튼
+    lazy var beforeButton = UIButton().then {
+        $0.setImage(UIImage(systemName: "chevron.left"), for: .normal)
+        $0.rx.tap.bind(to: beforeRelay).disposed(by: disposeBag)
     }
     
-    
-
     // MARK: - Methods
     func setupLayout() {
         self.backgroundColor = .systemBackground
         self.addSubviews([imgView, nameLabel, statusLabel, temperatureLabel, latitudeLabel, longitudeLabel])
-        addSubviews([leftButton, rightButton])
+        addSubviews([nextButton, beforeButton])
+        
         imgView.snp.makeConstraints {
             $0.centerX.equalToSuperview()
             $0.width.equalTo(imgView.snp.height)
@@ -59,16 +64,16 @@ class DetailView: UIView, UIBasePreView {
             $0.bottom.equalTo(nameLabel.snp.top).offset(-8)
         }
         
-        leftButton.snp.makeConstraints {
+        nextButton.snp.makeConstraints {
             $0.size.equalTo(25)
             $0.centerY.equalToSuperview()
-            $0.leading.equalToSuperview()
+            $0.trailing.equalToSuperview().offset(-8)
         }
         
-        rightButton.snp.makeConstraints {
+        beforeButton.snp.makeConstraints {
             $0.size.equalTo(25)
             $0.centerY.equalToSuperview()
-            $0.trailing.equalToSuperview()
+            $0.leading.equalToSuperview().offset(8)
         }
 
         nameLabel.snp.makeConstraints {
@@ -101,7 +106,8 @@ class DetailView: UIView, UIBasePreView {
 
     // MARK: - model Dependency Injection
     /// 데이터 바인딩
-    func setupDI<T>(observable: Observable<T>) {
+    @discardableResult
+    func setupDI<T>(observable: Observable<T>) -> Self {
         if let cityInfo = observable as? Observable<CityInfo> {
             cityInfo
                 .observeOn(MainScheduler.instance)
@@ -117,5 +123,20 @@ class DetailView: UIView, UIBasePreView {
         } else {
             NSLog("Observable Type Error!!!(미구현): DetailView")
         }
+        return self
+    }
+    
+    /// 다음 버튼 tap
+    @discardableResult
+    func setupDI(nextModel: PublishRelay<Void>) -> Self {
+        nextRelay.bind(to: nextModel).disposed(by: disposeBag)
+        return self
+    }
+    
+    /// 이전 버튼 tap
+    @discardableResult
+    func setupDI(beforeModel: PublishRelay<Void>) -> Self {
+        beforeRelay.bind(to: beforeModel).disposed(by: disposeBag)
+        return self
     }
 }

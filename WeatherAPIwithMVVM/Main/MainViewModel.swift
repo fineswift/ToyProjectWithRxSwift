@@ -25,7 +25,7 @@ class MainViewModel: ViewModelType, Stepper {
     /// 서버에서 받아온 도시 리스트
     var listCellData: [CityInfo] = []
     /// 테이블 뷰에 보여줄 도시 리스트
-    let cityRelay = PublishRelay<[CityInfo]>()
+    let cityRelay = BehaviorRelay<[CityInfo]>(value: [])
 
     // MARK: - ViewModelType Protocol
     typealias ViewModel = MainViewModel

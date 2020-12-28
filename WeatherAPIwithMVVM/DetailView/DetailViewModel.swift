@@ -13,7 +13,8 @@ class DetailViewModel: ViewModelType, Stepper {
     var steps = PublishRelay<Step>()
     
     // MARK: - Properties
-    var dataInfo: CityInfo?
+    let disposeBag = DisposeBag()
+    var dataInfo: CityInfo
     
     init(model: CityInfo) {
         dataInfo = model
@@ -23,6 +24,8 @@ class DetailViewModel: ViewModelType, Stepper {
     typealias ViewModel = DetailViewModel
 
     struct Input {
+        let nextModel: PublishRelay<Void>
+        let beforeModel: PublishRelay<Void>
     }
 
     struct Output {
@@ -30,6 +33,18 @@ class DetailViewModel: ViewModelType, Stepper {
     }
 
     func transform(req: ViewModel.Input) -> ViewModel.Output {
-        return Output(detailInfo: Observable.just(dataInfo).compactMap { $0 })
+        req.nextModel
+            .subscribe(onNext: { _ in
+                ToastMessage.shared.showToast("Test 다음 버튼")
+            })
+            .disposed(by: disposeBag)
+        
+        req.beforeModel
+            .subscribe(onNext: { _ in
+                ToastMessage.shared.showToast("Test 이전 버튼")
+            })
+            .disposed(by: disposeBag)
+        
+        return Output(detailInfo: Observable.just(dataInfo))
     }
 }
