@@ -36,17 +36,39 @@ class DetailView: UIView, UIBasePreView {
     let latitudeLabel = UILabel()
     /// 경도
     let longitudeLabel = UILabel()
+    
+    lazy var leftButton = UIButton().then {
+        $0.setImage(UIImage(systemName: "chevron.left"), for: .normal)
+    }
+    
+    lazy var rightButton = UIButton().then {
+        $0.setImage(UIImage(systemName: "chevron.right"), for: .normal)
+    }
+    
+    
 
     // MARK: - Methods
     func setupLayout() {
         self.backgroundColor = .systemBackground
         self.addSubviews([imgView, nameLabel, statusLabel, temperatureLabel, latitudeLabel, longitudeLabel])
-
+        addSubviews([leftButton, rightButton])
         imgView.snp.makeConstraints {
             $0.centerX.equalToSuperview()
             $0.width.equalTo(imgView.snp.height)
             $0.top.equalTo(self.safeAreaLayoutGuide.snp.top).offset(8)
             $0.bottom.equalTo(nameLabel.snp.top).offset(-8)
+        }
+        
+        leftButton.snp.makeConstraints {
+            $0.size.equalTo(25)
+            $0.centerY.equalToSuperview()
+            $0.leading.equalToSuperview()
+        }
+        
+        rightButton.snp.makeConstraints {
+            $0.size.equalTo(25)
+            $0.centerY.equalToSuperview()
+            $0.trailing.equalToSuperview()
         }
 
         nameLabel.snp.makeConstraints {
