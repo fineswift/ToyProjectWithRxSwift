@@ -41,6 +41,7 @@ class SearchView: UIView, UIBasePreView {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
 
         tableView.snp.makeConstraints {
+            $0.top.equalTo(self.snp.top)
             $0.edges.equalToSuperview()
         }
     }

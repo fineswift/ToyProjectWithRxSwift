@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		40C9F808B2336CFAF498F30A /* Pods_WeatherAPIwithMVVM.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F396EA1101F29900C57EBE0E /* Pods_WeatherAPIwithMVVM.framework */; };
+		681FC3072599DE8B00DA77C6 /* Snapkit+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 681FC3062599DE8B00DA77C6 /* Snapkit+.swift */; };
 		68545EE82514904B0050D99B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68545EE72514904B0050D99B /* AppDelegate.swift */; };
 		68545EEC2514904B0050D99B /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68545EEB2514904B0050D99B /* MainViewController.swift */; };
 		68545EF12514904D0050D99B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 68545EF02514904D0050D99B /* Assets.xcassets */; };
@@ -41,6 +42,7 @@
 /* Begin PBXFileReference section */
 		40A8030BAE2F438E678BED14 /* Pods-WeatherAPIwithMVVM.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherAPIwithMVVM.debug.xcconfig"; path = "Target Support Files/Pods-WeatherAPIwithMVVM/Pods-WeatherAPIwithMVVM.debug.xcconfig"; sourceTree = "<group>"; };
 		61C7F431DFA223C188FF60F6 /* Pods-WeatherAPIwithMVVM.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherAPIwithMVVM.release.xcconfig"; path = "Target Support Files/Pods-WeatherAPIwithMVVM/Pods-WeatherAPIwithMVVM.release.xcconfig"; sourceTree = "<group>"; };
+		681FC3062599DE8B00DA77C6 /* Snapkit+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Snapkit+.swift"; sourceTree = "<group>"; };
 		68545EE42514904B0050D99B /* WeatherAPIwithMVVM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherAPIwithMVVM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		68545EE72514904B0050D99B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		68545EEB2514904B0050D99B /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -185,12 +187,13 @@
 		68545F09251497DE0050D99B /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				68545F22251498E30050D99B /* UIView+.swift */,
 				68545F642514A36C0050D99B /* ViewModel.swift */,
 				68545F612514A31C0050D99B /* ViewModelType.swift */,
 				686493A32518391C007D876A /* UIKitPreView+.swift */,
 				68CD743C251B2B16001F6185 /* UIApplication+.swift */,
 				68C6ADCA2590A861001479BF /* FlowSugar.swift */,
+				68545F22251498E30050D99B /* UIView+.swift */,
+				681FC3062599DE8B00DA77C6 /* Snapkit+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -361,6 +364,7 @@
 				68545F01251497A30050D99B /* SearchViewController.swift in Sources */,
 				68C6ADAE25909E2B001479BF /* AppStep.swift in Sources */,
 				68545F652514A36C0050D99B /* ViewModel.swift in Sources */,
+				681FC3072599DE8B00DA77C6 /* Snapkit+.swift in Sources */,
 				686493A42518391C007D876A /* UIKitPreView+.swift in Sources */,
 				68B22C4F252B189700FA5571 /* Resource.swift in Sources */,
 				68545F06251497C70050D99B /* DetailViewController.swift in Sources */,

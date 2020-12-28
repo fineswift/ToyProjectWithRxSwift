@@ -60,7 +60,7 @@ class DetailView: UIView, UIBasePreView {
         imgView.snp.makeConstraints {
             $0.centerX.equalToSuperview()
             $0.width.equalTo(imgView.snp.height)
-            $0.top.equalTo(self.safeAreaLayoutGuide.snp.top).offset(8)
+            $0.top.equalToSafeAreaAuto(self).offset(8)
             $0.bottom.equalTo(nameLabel.snp.top).offset(-8)
         }
         
