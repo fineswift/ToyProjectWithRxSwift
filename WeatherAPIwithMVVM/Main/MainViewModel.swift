@@ -11,7 +11,7 @@ import RxFlow
 enum MainInput {
     case refresh
     case search
-    case cellSelect(CityInfo)
+    case cellSelect(Int)
     case cellDelete(CityInfo)
 }
 
@@ -53,8 +53,8 @@ class MainViewModel: ViewModelType, Stepper {
             }
         case .search:
             self.steps.accept(AppStep.search)
-        case .cellSelect(let city):
-            self.steps.accept(AppStep.detail(data: city))
+        case .cellSelect(let index):
+            self.steps.accept(AppStep.detail(data: cityRelay.value, index: index))
         case .cellDelete(let city):
             guard var data = UserDefaults.standard.value(forKey: "CityIdList") as? [Int] else { return }
             for i in 0..<data.count {

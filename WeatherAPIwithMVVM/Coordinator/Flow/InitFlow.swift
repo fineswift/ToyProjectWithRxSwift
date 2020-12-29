@@ -26,8 +26,8 @@ class InitFlow: Flow {
             return navigateToMain()
         case .search:
             return navigateToSearch()
-        case .detail(let data):
-            return navigateToDetail(data)
+        case .detail(let data, let index):
+            return navigateToDetail(data, index)
         case .dismiss(let completion):
             self.rootViewController.presentedViewController?.dismiss(animated: true, completion: completion)
             return .none
@@ -55,8 +55,8 @@ extension InitFlow {
 //        return .one(flowContributor: .contribute(withNextPresentable: VC, withNextStepper: VC.viewModel))
     }
     
-    private func navigateToDetail(_ data: CityInfo) -> FlowContributors {
-        FlowSugar(DetailViewModel(model: data), DetailViewController.self)
+    private func navigateToDetail(_ data: [CityInfo], _ index: Int) -> FlowContributors {
+        FlowSugar(DetailViewModel(model: data, index: index), DetailViewController.self)
             .navigationItem(with: {
                 $0.title = "Detail"
             })

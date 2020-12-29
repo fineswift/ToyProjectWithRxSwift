@@ -62,10 +62,6 @@ class MainView: UIView, UIBasePreView {
                 .bind(to: relay)
                 .disposed(by: disposeBag)
             
-//            tableView.rx.modelSelected(CityInfo.self)
-//                .map { .cellSelect($0) }
-//                .bind(to: relay)
-//                .disposed(by: disposeBag)
             tableView.rx.itemSelected
                 .map { .cellSelect($0.row) }
                 .bind(to: relay)

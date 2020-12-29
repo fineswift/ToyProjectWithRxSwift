@@ -108,8 +108,9 @@ class DetailView: UIView, UIBasePreView {
     /// 데이터 바인딩
     @discardableResult
     func setupDI<T>(observable: Observable<T>) -> Self {
-        if let cityInfo = observable as? Observable<CityInfo> {
+        if let cityInfo = observable as? Observable<CityInfo?> {
             cityInfo
+                .compactMap { $0 }
                 .observeOn(MainScheduler.instance)
                 .bind(onNext: {[weak self] model in
                     guard let `self` = self else { return }

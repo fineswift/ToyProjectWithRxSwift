@@ -9,7 +9,9 @@ import Foundation
 import RxFlow
 
 enum SearchInput {
+    /// 텍스트 필드에 입력된 텍스트
     case searchText(String)
+    /// 셀 선택
     case modelSelect(List)
 }
 
