@@ -37,7 +37,7 @@ class MainView: UIView, UIBasePreView {
         tableView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
-        searchButton = UIBarButtonItem(barButtonSystemItem: .search, target: nil, action: nil)
+        searchButton = UIBarButtonItem(barButtonSystemItem: .add, target: nil, action: nil)
     }
     
     // MARK: - model Dependency Injection
@@ -62,8 +62,12 @@ class MainView: UIView, UIBasePreView {
                 .bind(to: relay)
                 .disposed(by: disposeBag)
             
-            tableView.rx.modelSelected(CityInfo.self)
-                .map { .cellSelect($0) }
+//            tableView.rx.modelSelected(CityInfo.self)
+//                .map { .cellSelect($0) }
+//                .bind(to: relay)
+//                .disposed(by: disposeBag)
+            tableView.rx.itemSelected
+                .map { .cellSelect($0.row) }
                 .bind(to: relay)
                 .disposed(by: disposeBag)
             
