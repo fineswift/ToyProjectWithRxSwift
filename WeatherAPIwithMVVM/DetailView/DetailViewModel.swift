@@ -38,14 +38,14 @@ class DetailViewModel: ViewModelType, Stepper {
 
     func transform(req: ViewModel.Input) -> ViewModel.Output {
         req.nextModel
-            .map { _ in true }
-            .bind(onNext: moveToCityInfo)
-            .disposed(by: disposeBag)
+            .bind(onNext: { [weak self] in
+                self?.moveToCityInfo(true)
+            }).disposed(by: disposeBag)
         
         req.beforeModel
-            .map { _ in false }
-            .bind(onNext: moveToCityInfo)
-            .disposed(by: disposeBag)
+            .bind(onNext: { [weak self] in
+                self?.moveToCityInfo(false)
+            }).disposed(by: disposeBag)
         
         return Output(detailInfo: dataInfoRelay.asObservable())
     }
