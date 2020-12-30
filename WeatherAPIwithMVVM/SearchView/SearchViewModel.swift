@@ -26,7 +26,6 @@ class SearchViewModel: ViewModelType, Stepper {
     let cityListRelay = PublishRelay<[List]>()
     let disposeBag = DisposeBag()
     
-    
     // MARK: - ViewModelType Protocol
     typealias ViewModel = SearchViewModel
     
@@ -40,9 +39,13 @@ class SearchViewModel: ViewModelType, Stepper {
     }
 
     func transform(req: ViewModel.Input) -> ViewModel.Output {
-        req.dataRequestTrigger.subscribe(onNext: setupData).disposed(by: disposeBag)
+        req.dataRequestTrigger
+            .subscribe(onNext: setupData)
+            .disposed(by: disposeBag)
         
-        req.actionRelay.subscribe(onNext: action).disposed(by: disposeBag)
+        req.actionRelay
+            .subscribe(onNext: action)
+            .disposed(by: disposeBag)
         
         return Output(cityList: cityListRelay.asObservable())
     }

@@ -24,8 +24,8 @@ class DetailView: UIView, UIBasePreView {
     }
     
     // MARK: - Properties
-    let nextRelay = PublishRelay<Void>()
-    let beforeRelay = PublishRelay<Void>()
+    /// 오른쪽 버튼 tap = true, 왼쪽 버튼 tap = false
+    let buttonTapAction = PublishRelay<Bool>()
 
     // MARK: - Objects
     /// 날씨 상태 이미지
@@ -43,12 +43,12 @@ class DetailView: UIView, UIBasePreView {
     /// 다음 버튼
     lazy var nextButton = UIButton().then {
         $0.setImage(UIImage(systemName: "chevron.right"), for: .normal)
-        $0.rx.tap.bind(to: nextRelay).disposed(by: disposeBag)
+        $0.rx.tap.map { _ in true }.bind(to: buttonTapAction).disposed(by: disposeBag)
     }
     /// 이전 버튼
     lazy var beforeButton = UIButton().then {
         $0.setImage(UIImage(systemName: "chevron.left"), for: .normal)
-        $0.rx.tap.bind(to: beforeRelay).disposed(by: disposeBag)
+        $0.rx.tap.map { _ in false }.bind(to: buttonTapAction).disposed(by: disposeBag)
     }
     
     // MARK: - Methods
@@ -127,17 +127,10 @@ class DetailView: UIView, UIBasePreView {
         return self
     }
     
-    /// 다음 버튼 tap
+    /// 좌우 버튼 tap
     @discardableResult
-    func setupDI(nextModel: PublishRelay<Void>) -> Self {
-        nextRelay.bind(to: nextModel).disposed(by: disposeBag)
-        return self
-    }
-    
-    /// 이전 버튼 tap
-    @discardableResult
-    func setupDI(beforeModel: PublishRelay<Void>) -> Self {
-        beforeRelay.bind(to: beforeModel).disposed(by: disposeBag)
+    func setupDI(buttonAction: PublishRelay<Bool>) -> Self {
+        buttonTapAction.bind(to: buttonAction).disposed(by: disposeBag)
         return self
     }
 }

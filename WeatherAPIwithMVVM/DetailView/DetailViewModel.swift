@@ -28,8 +28,7 @@ class DetailViewModel: ViewModelType, Stepper {
     typealias ViewModel = DetailViewModel
 
     struct Input {
-        let nextModel: PublishRelay<Void>
-        let beforeModel: PublishRelay<Void>
+        let buttonTapAction: Observable<Bool>
     }
 
     struct Output {
@@ -37,15 +36,9 @@ class DetailViewModel: ViewModelType, Stepper {
     }
 
     func transform(req: ViewModel.Input) -> ViewModel.Output {
-        req.nextModel
-            .bind(onNext: { [weak self] in
-                self?.moveToCityInfo(true)
-            }).disposed(by: disposeBag)
-        
-        req.beforeModel
-            .bind(onNext: { [weak self] in
-                self?.moveToCityInfo(false)
-            }).disposed(by: disposeBag)
+        req.buttonTapAction
+            .bind(onNext: moveToCityInfo(_:))
+            .disposed(by: disposeBag)
         
         return Output(detailInfo: dataInfoRelay.asObservable())
     }

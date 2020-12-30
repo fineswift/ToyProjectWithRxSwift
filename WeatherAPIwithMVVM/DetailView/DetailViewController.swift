@@ -14,8 +14,7 @@ class DetailViewController: UIViewController, ViewModelProtocol {
     var viewModel: ViewModel!
 
     // MARK: - Properties
-    let nextAction = PublishRelay<Void>()
-    let beforeAction = PublishRelay<Void>()
+    let buttonActionTrigger = PublishRelay<Bool>()
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -37,13 +36,11 @@ class DetailViewController: UIViewController, ViewModelProtocol {
 
     // MARK: - Binding
     func bindingViewModel() {
-        let res = viewModel.transform(req: ViewModel.Input(nextModel: nextAction,
-                                                           beforeModel: beforeAction))
+        let res = viewModel.transform(req: ViewModel.Input(buttonTapAction: buttonActionTrigger.asObservable()))
 
         subView
             .setupDI(observable: res.detailInfo)
-            .setupDI(nextModel: nextAction)
-            .setupDI(beforeModel: beforeAction)
+            .setupDI(buttonAction: buttonActionTrigger)
     }
 
     // MARK: - Methods
