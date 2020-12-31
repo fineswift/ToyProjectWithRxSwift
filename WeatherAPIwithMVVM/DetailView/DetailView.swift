@@ -25,21 +25,24 @@ class DetailView: UIView, UIBasePreView {
     
     // MARK: - Properties
     /// 오른쪽 버튼 tap = true, 왼쪽 버튼 tap = false
-    let buttonTapAction = PublishRelay<Bool>()
+    lazy var buttonTapAction = PublishRelay<Bool>()
 
     // MARK: - Objects
+    lazy var containerView = UIView().then {
+        $0.backgroundColor = .clear
+    }
     /// 날씨 상태 이미지
-    let imgView = UIImageView()
+    lazy var imgView = UIImageView()
     /// 도시 이름
-    let nameLabel = UILabel()
+    lazy var nameLabel = UILabel()
     /// 날씨 상태
-    let statusLabel = UILabel()
+    lazy var statusLabel = UILabel()
     /// 기온
-    let temperatureLabel = UILabel()
+    lazy var temperatureLabel = UILabel()
     /// 위도
-    let latitudeLabel = UILabel()
+    lazy var latitudeLabel = UILabel()
     /// 경도
-    let longitudeLabel = UILabel()
+    lazy var longitudeLabel = UILabel()
     /// 다음 버튼
     lazy var nextButton = UIButton().then {
         $0.setImage(UIImage(systemName: "chevron.right"), for: .normal)
@@ -53,34 +56,37 @@ class DetailView: UIView, UIBasePreView {
     
     // MARK: - Methods
     func setupLayout() {
-        self.backgroundColor = .systemBackground
-        self.addSubviews([imgView, nameLabel, statusLabel, temperatureLabel, latitudeLabel, longitudeLabel])
-        addSubviews([nextButton, beforeButton])
-        
-        imgView.snp.makeConstraints {
-            $0.centerX.equalToSuperview()
-            $0.width.equalTo(imgView.snp.height)
-            $0.top.equalToSafeAreaAuto(self).offset(8)
-            $0.bottom.equalTo(nameLabel.snp.top).offset(-8)
-        }
+        backgroundColor = .systemBackground
+        containerView.addSubviews([imgView, nameLabel, statusLabel, temperatureLabel, latitudeLabel, longitudeLabel])
+        self.addSubviews([nextButton, containerView, beforeButton])
         
         nextButton.snp.makeConstraints {
-            $0.size.equalTo(25)
+            $0.size.equalTo(30)
             $0.centerY.equalToSuperview()
             $0.trailing.equalToSuperview().offset(-8)
         }
         
         beforeButton.snp.makeConstraints {
-            $0.size.equalTo(25)
+            $0.size.equalTo(30)
             $0.centerY.equalToSuperview()
             $0.leading.equalToSuperview().offset(8)
         }
+        
+        containerView.snp.makeConstraints {
+            $0.top.bottom.equalToSafeAreaAuto(self)
+            $0.leading.equalTo(beforeButton.snp.trailing)
+            $0.trailing.equalTo(nextButton.snp.leading)
+        }
+        
+        imgView.snp.makeConstraints {
+            $0.top.equalToSuperview().offset(25)
+            $0.leading.trailing.equalToSuperview()
+        }
 
         nameLabel.snp.makeConstraints {
-            $0.centerY.equalToSuperview().offset(20)
-            $0.height.equalTo(21)
-            $0.leading.equalTo(imgView.snp.leading)
-            $0.trailing.equalTo(imgView.snp.trailing)
+            $0.centerY.equalToSuperview()
+            $0.leading.equalToSuperview().offset(12)
+            $0.trailing.equalToSuperview().offset(-12)
         }
 
         statusLabel.snp.makeConstraints {
